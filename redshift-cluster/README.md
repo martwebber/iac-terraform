@@ -46,7 +46,7 @@ tags                               = {}
 ```
 terraform validate
 ```
-![Alt text](image.png)
+![Alt text](images/image.png)
 4. Run terraform plan: this command creates an execution plan, which lets you preview the changes that Terraform plans to make to your infrastructure. By default, when Terraform creates a plan it:
 
 - Reads the current state of any already-existing remote objects to make sure that the Terraform state is up-to-date.
@@ -56,20 +56,20 @@ terraform validate
 terraform plan
 ```
 
-![Alt text](image-1.png)
-![Alt text](image-2.png)
+![Alt text](images/image-1.png)
+![Alt text](images/image-2.png)
 5. Terraform apply: this command executes the actions proposed in a Terraform plan. Terraform will request for your approval before it can create the resources in your preferred cloud computing provider. Alternatively, you can pass the -auto-approve flag which skips the approval step.
 ```
 terraform apply -auto-approve
 ```
-![Alt text](image-3.png)
-![Alt text](image-4.png)
-![Alt text](image-5.png)
-![Alt text](image-6.png)
+![Alt text](images/image-3.png)
+![Alt text](images/image-4.png)
+![Alt text](images/image-5.png)
+![Alt text](images/image-6.png)
 
 6. Terraform destroy: this command destroys all remote objects managed by a particular Terraform configuration.
-![Alt text](image-7.png)
-![Alt text](image-8.png)
+![Alt text](images/image-7.png)
+![Alt text](images/image-8.png)
 
 
 ## Requirements
