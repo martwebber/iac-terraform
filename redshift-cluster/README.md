@@ -5,11 +5,12 @@ To install terraform on your machine, follow the [Installation guide](https://de
 Once the setup is complete, go head and clone the repo to your machine. 
 
 ## Steps
-1. cd into the repo and run terraform init
+1. cd into the repo and run terraform init: The command initializes a working directory containing Terraform configuration files. This is the first command that should be run after writing a new Terraform configuration or cloning an existing one from version control.
 ```
+cd iac-terraform/redshift-cluster/
 terraform init
 ```
-2. validate
+2. create a terraform.tfvars and add the values below. This is the file you'll use to initiaie your variables
 
 
 ## Tfvars
@@ -39,6 +40,37 @@ security_group_ingress_description = ""
 security_group_name                = ""
 tags                               = {}
 ```
+
+3. Run validate command: this is used to verify the correctness of Terraform configuration files. It checks the syntax of the Terraform files, ensures the correct usage of attributes and values, and validates the configuration based on the core syntax of Terraform and also by checking all the providers in the code.
+
+```
+terraform validate
+```
+![Alt text](image.png)
+4. Run terraform plan: this command creates an execution plan, which lets you preview the changes that Terraform plans to make to your infrastructure. By default, when Terraform creates a plan it:
+
+- Reads the current state of any already-existing remote objects to make sure that the Terraform state is up-to-date.
+- Compares the current configuration to the prior state and noting any differences.
+- Proposes a set of change actions that should, if applied, make the remote objects match the configuration.
+```
+terraform plan
+```
+
+![Alt text](image-1.png)
+![Alt text](image-2.png)
+5. Terraform apply: this command executes the actions proposed in a Terraform plan. Terraform will request for your approval before it can create the resources in your preferred cloud computing provider. Alternatively, you can pass the -auto-approve flag which skips the approval step.
+```
+terraform apply -auto-approve
+```
+![Alt text](image-3.png)
+![Alt text](image-4.png)
+![Alt text](image-5.png)
+![Alt text](image-6.png)
+
+6. Terraform destroy: this command destroys all remote objects managed by a particular Terraform configuration.
+![Alt text](image-7.png)
+![Alt text](image-8.png)
+
 
 ## Requirements
 
@@ -97,9 +129,16 @@ No modules.
 | <a name="input_s3_read_role_name"></a> [s3\_read\_role\_name](#input\_s3\_read\_role\_name) | S3 read role name | `string` | n/a | yes |
 | <a name="input_security_group_description"></a> [security\_group\_description](#input\_security\_group\_description) | Security group description | `string` | n/a | yes |
 | <a name="input_security_group_ingress_description"></a> [security\_group\_ingress\_description](#input\_security\_group\_ingress\_description) | Security group ingres description | `string` | n/a | yes |
-| <a name="input_security_group_name"></a> [security\_group\_name](#input\_security\_group\_name) | Security group name | `string` | n/a | yes |
+| <a name="input_security_group_name"></a> [security\_group\_name](#input\_security\_group\_name) | Security group name | `string` | n/a | yes |     
 | <a name="input_tags"></a> [tags](#input\_tags) | Tags to be used in the project | `map(any)` | `{}` | no |
 
 ## Outputs
 
 No outputs.
+
+## References
+- [Terraform aws provider](https://registry.terraform.io/providers/hashicorp/aws/latest/docs)   
+- [Install Terraform](https://developer.hashicorp.com/terraform/tutorials/aws-get-started/install-cli)   
+- [Terraform docs](https://terraform-docs.io/user-guide/introduction/)   
+- [AWS redshift cluster](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/redshift_cluster)   
+- [Amazon Redshift docs](https://docs.aws.amazon.com/redshift/latest/gsg/getting-started.html)       

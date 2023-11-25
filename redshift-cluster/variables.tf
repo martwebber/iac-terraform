@@ -80,7 +80,7 @@ variable "number_of_nodes" {
 variable "final_snapshot" {
   description = "Final snapshot"
   type = bool
-  default = ""
+  default = false
 }
 
 variable "security_group_name" {
@@ -103,7 +103,7 @@ variable "redshift_subnet_group_name" {
   type = string
 }
 
-variable "s3_read_role_name" {
+variable "redshift_role_name" {
   description = "S3 read role name"
   type = string
 }

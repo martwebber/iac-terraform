@@ -30,21 +30,25 @@ resource "aws_redshift_subnet_group" "redshift_subnet_group" {
   )
 }
 
-resource "aws_iam_role" "s3_read_role" {
-  name = var.s3_read_role_name
+resource "aws_iam_role" "redshift_role" {
+  name = var.redshift_role_name
 
   assume_role_policy = jsonencode({
-    Version = "2012-10-17",
-    Statement = [
-      {
-        Action = "sts:AssumeRole",
-        Effect = "Allow",
-        Principal = {
-          Service = "s3.amazonaws.com"
-        },
-      },
-    ],
-  })
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Action": [
+                "sts:AssumeRole"
+            ],
+            "Principal": {
+                "Service": [
+                    "redshift.amazonaws.com"
+                ]
+            }
+        }
+    ]
+}    )
 }
 
 resource "aws_iam_policy" "s3_read_policy" {
@@ -54,9 +58,9 @@ resource "aws_iam_policy" "s3_read_policy" {
   policy = file("./policy.json")
 }
 
-resource "aws_iam_role_policy_attachment" "s3_read_role_attachment" {
+resource "aws_iam_role_policy_attachment" "redshift_role_attachment" {
   policy_arn = aws_iam_policy.s3_read_policy.arn
-  role       = aws_iam_role.s3_read_role.name
+  role       = aws_iam_role.redshift_role.name
 }
 
 
@@ -88,7 +92,7 @@ resource "aws_security_group" "sg" {
       Name = "${var.region}-${var.project}-security-group"
     },
   )
-}
+}                                                        
 
 
 resource "aws_redshift_cluster" "redshift_cluster" {
@@ -101,7 +105,7 @@ resource "aws_redshift_cluster" "redshift_cluster" {
   skip_final_snapshot = var.final_snapshot
   cluster_subnet_group_name = aws_redshift_subnet_group.redshift_subnet_group.name
   vpc_security_group_ids = [aws_security_group.sg.id]
-  iam_roles = [aws_iam_role.s3_read_role.arn]
+  iam_roles = [aws_iam_role.redshift_role.arn]
   enhanced_vpc_routing = var.cluster_enhanced_vpc_routing
   publicly_accessible = var.cluster_publicly_accessible
   encrypted = var.cluster_data_encryption
@@ -114,83 +118,3 @@ resource "aws_redshift_cluster" "redshift_cluster" {
     },
   )
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-# resource "aws_iam_policy" "my_s3_readonly_policy_redshift" {
-#   name   = var.s3_policy_name
-#   policy = file("./policy.json")
-
-# #   tags = merge(
-# #     var.tags,
-# #     {
-# #       Name = "${var.region}-${var.project}-policy"
-# #     },
-# #   )
-# }
-
-
-
-# resource "aws_iam_role" "my_s3_readonly_policy_redshift" {
-#   name = "redshift-role"
-
-#   # Terraform's "jsonencode" function converts a
-#   # Terraform expression result to valid JSON syntax.
-#   assume_role_policy = file("./policy.json")
-
-#   tags = {
-#     tag-key = "tag-value"
-#   }
-# }
-
-
-
-
-
-
-
-
-# data "aws_subnet_ids" "default" {
-#   vpc_id = data.aws_vpcs.all.ids[0]  # Assuming the first VPC is the default one
-# }
-
-# output "subnet_ids" {
-#   value = data.aws_subnet_ids.default.ids
-# }
-
-
-
-
-# data "aws_subnet_ids" "test_subnet_ids" {
-#   vpc_id = "default"
-# }
-# data "aws_subnet" "test_subnet" {
-#   count = "${length(data.aws_subnet_ids.test_subnet_ids.ids)}"
-#   id    = "${tolist(data.aws_subnet_ids.test_subnet_ids.ids)[count.index]}"
-# }
-
-# output "subnet_cidr_blocks" {
-#   value = ["${data.aws_subnet.test_subnet.*.id}"]
-# }
