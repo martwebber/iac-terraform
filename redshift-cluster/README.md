@@ -1,3 +1,13 @@
+# Setting up a Redshift cluster using Terraform - Complete guide
+#### Resources
+- [IAM policy](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_policy)
+- [IAM role](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_role)
+- [IAM role policy attachment](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_role_policy_attachment)
+- [Redshift cluster](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/redshift_cluster)
+- [Redshift subnet group](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/redshift_subnet_group)
+- [Security group](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/security_group)
+
+
 ## Installation
 To install terraform on your machine, follow the [Installation guide](https://developer.hashicorp.com/terraform/tutorials/aws-get-started/install-cli) on hashicorp website
 
@@ -40,6 +50,8 @@ security_group_ingress_description = ""
 security_group_name                = ""
 tags                               = {}
 ```
+***Sample terraform.tfvars file***
+![Alt text](images/image9.png)
 
 3. Run validate command: this is used to verify the correctness of Terraform configuration files. It checks the syntax of the Terraform files, ensures the correct usage of attributes and values, and validates the configuration based on the core syntax of Terraform and also by checking all the providers in the code.
 
