@@ -16,7 +16,7 @@ variable "redshift_cluster_identifier" {
 variable "database_name" {
   description = "database name"
   type        = string
-  default = ""
+  default     = ""
 }
 
 variable "master_username" {
@@ -37,85 +37,85 @@ variable "node_type" {
 variable "cluster_type" {
   description = "cluster type"
   type        = string
-  default = ""
+  default     = ""
 }
 
 variable "s3_policy_name" {
   description = "S3 read only access policy"
-  type = string
+  type        = string
 }
 
 variable "cluster_subnet_group_name" {
   description = "Cluster subnet group name"
-  type = string
-  default = ""
+  type        = string
+  default     = ""
 }
 
 variable "cluster_enhanced_vpc_routing" {
   description = "Enhanced vpc routing"
-  type = bool
-  default = false
+  type        = bool
+  default     = false
 }
 
 variable "cluster_publicly_accessible" {
   description = "Cluster public accessibility"
-  type = bool
+  type        = bool
 }
 
 variable "cluster_data_encryption" {
   description = "Data encryption"
-  type = bool
+  type        = bool
 }
 
 variable "redshift_cluster_port" {
   description = "Cluster port"
-  type = number
+  type        = number
 }
 
 variable "number_of_nodes" {
   description = "Cluster subnet group name"
-  type = number
+  type        = number
 }
 
 variable "final_snapshot" {
   description = "Final snapshot"
-  type = bool
-  default = false
+  type        = bool
+  default     = false
 }
 
 variable "security_group_name" {
   description = "Security group name"
-  type = string
+  type        = string
 }
 
 variable "security_group_description" {
   description = "Security group description"
-  type = string
+  type        = string
 }
 
 variable "security_group_ingress_description" {
   description = "Security group ingres description"
-  type = string
+  type        = string
 }
 
 variable "redshift_subnet_group_name" {
   description = "Redshift subnet group name"
-  type = string
+  type        = string
 }
 
 variable "redshift_role_name" {
   description = "S3 read role name"
-  type = string
+  type        = string
 }
 
 variable "s3_read_policy_name" {
   description = "S3 read policy name"
-  type = string
+  type        = string
 }
 
 variable "s3_read_policy_description" {
   description = "S3 read policy description"
-  type = string
+  type        = string
 }
 
 variable "tags" {

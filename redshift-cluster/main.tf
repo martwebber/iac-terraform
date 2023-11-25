@@ -34,21 +34,21 @@ resource "aws_iam_role" "redshift_role" {
   name = var.redshift_role_name
 
   assume_role_policy = jsonencode({
-    "Version": "2012-10-17",
-    "Statement": [
-        {
-            "Effect": "Allow",
-            "Action": [
-                "sts:AssumeRole"
-            ],
-            "Principal": {
-                "Service": [
-                    "redshift.amazonaws.com"
-                ]
-            }
+    "Version" : "2012-10-17",
+    "Statement" : [
+      {
+        "Effect" : "Allow",
+        "Action" : [
+          "sts:AssumeRole"
+        ],
+        "Principal" : {
+          "Service" : [
+            "redshift.amazonaws.com"
+          ]
         }
+      }
     ]
-}    )
+  })
 }
 
 resource "aws_iam_policy" "s3_read_policy" {
@@ -92,25 +92,25 @@ resource "aws_security_group" "sg" {
       Name = "${var.region}-${var.project}-security-group"
     },
   )
-}                                                        
+}
 
 
 resource "aws_redshift_cluster" "redshift_cluster" {
-  cluster_identifier = var.redshift_cluster_identifier
-  database_name      = var.database_name
-  master_username    = var.master_username
-  master_password    = var.master_password
-  node_type          = var.node_type
-  cluster_type       = var.cluster_type
-  skip_final_snapshot = var.final_snapshot
+  cluster_identifier        = var.redshift_cluster_identifier
+  database_name             = var.database_name
+  master_username           = var.master_username
+  master_password           = var.master_password
+  node_type                 = var.node_type
+  cluster_type              = var.cluster_type
+  skip_final_snapshot       = var.final_snapshot
   cluster_subnet_group_name = aws_redshift_subnet_group.redshift_subnet_group.name
-  vpc_security_group_ids = [aws_security_group.sg.id]
-  iam_roles = [aws_iam_role.redshift_role.arn]
-  enhanced_vpc_routing = var.cluster_enhanced_vpc_routing
-  publicly_accessible = var.cluster_publicly_accessible
-  encrypted = var.cluster_data_encryption
-  number_of_nodes = var.number_of_nodes
-  port = var.redshift_cluster_port
+  vpc_security_group_ids    = [aws_security_group.sg.id]
+  iam_roles                 = [aws_iam_role.redshift_role.arn]
+  enhanced_vpc_routing      = var.cluster_enhanced_vpc_routing
+  publicly_accessible       = var.cluster_publicly_accessible
+  encrypted                 = var.cluster_data_encryption
+  number_of_nodes           = var.number_of_nodes
+  port                      = var.redshift_cluster_port
   tags = merge(
     var.tags,
     {
