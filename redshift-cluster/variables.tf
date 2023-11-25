@@ -16,6 +16,7 @@ variable "redshift_cluster_identifier" {
 variable "database_name" {
   description = "database name"
   type        = string
+  default = ""
 }
 
 variable "master_username" {
@@ -36,6 +37,7 @@ variable "node_type" {
 variable "cluster_type" {
   description = "cluster type"
   type        = string
+  default = ""
 }
 
 variable "s3_policy_name" {
@@ -46,21 +48,13 @@ variable "s3_policy_name" {
 variable "cluster_subnet_group_name" {
   description = "Cluster subnet group name"
   type = string
-}
-
-variable "cluster_vpc_security_group_ids" {
-  description = "A list of security groups"
-  type = list(any)
-}
-
-variable "cluster_iam_roles" {
-  description = "A list of IAM roles"
-  type = list(any)
+  default = ""
 }
 
 variable "cluster_enhanced_vpc_routing" {
   description = "Enhanced vpc routing"
   type = bool
+  default = false
 }
 
 variable "cluster_publicly_accessible" {
@@ -86,6 +80,7 @@ variable "number_of_nodes" {
 variable "final_snapshot" {
   description = "Final snapshot"
   type = bool
+  default = ""
 }
 
 variable "security_group_name" {

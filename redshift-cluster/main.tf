@@ -91,7 +91,6 @@ resource "aws_security_group" "sg" {
 }
 
 
-
 resource "aws_redshift_cluster" "redshift_cluster" {
   cluster_identifier = var.redshift_cluster_identifier
   database_name      = var.database_name
