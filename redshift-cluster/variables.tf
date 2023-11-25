@@ -32,6 +32,7 @@ variable "master_password" {
 variable "node_type" {
   description = "node type"
   type        = string
+  default = "single-node"
 }
 
 variable "cluster_type" {
@@ -60,21 +61,26 @@ variable "cluster_enhanced_vpc_routing" {
 variable "cluster_publicly_accessible" {
   description = "Cluster public accessibility"
   type        = bool
+  default = true
+
 }
 
 variable "cluster_data_encryption" {
   description = "Data encryption"
   type        = bool
+  default = false
 }
 
 variable "redshift_cluster_port" {
   description = "Cluster port"
   type        = number
+  default = 5439
 }
 
 variable "number_of_nodes" {
   description = "Cluster subnet group name"
   type        = number
+  default = 1
 }
 
 variable "final_snapshot" {
@@ -86,16 +92,19 @@ variable "final_snapshot" {
 variable "security_group_name" {
   description = "Security group name"
   type        = string
+  default = ""
 }
 
 variable "security_group_description" {
   description = "Security group description"
   type        = string
+  default = ""
 }
 
 variable "security_group_ingress_description" {
   description = "Security group ingres description"
   type        = string
+  default = ""
 }
 
 variable "redshift_subnet_group_name" {
@@ -106,16 +115,19 @@ variable "redshift_subnet_group_name" {
 variable "redshift_role_name" {
   description = "S3 read role name"
   type        = string
+  default = ""
 }
 
 variable "s3_read_policy_name" {
   description = "S3 read policy name"
   type        = string
+  default = ""
 }
 
 variable "s3_read_policy_description" {
   description = "S3 read policy description"
   type        = string
+  default = ""
 }
 
 variable "tags" {
